@@ -3,7 +3,7 @@
         <div class = "image-container d-flex flex-column justify-content-between">
             <h1>KKM<span class = "clocked-text">Soft</span></h1>
             <div class = "d-flex flex-row justify-content-end">
-                <img src="assets/images/plMainImg.3614c8f4.svg" alt="hero-image">
+                <img class = "hero-image" src="assets/images/converse.png" alt="hero-image">
             </div>
             
         </div>
@@ -29,9 +29,9 @@
                 <p *ngIf="error" class="error">
                     {{ error }}
                 </p>
-                <a class="mb-2" (click) = "login = !login">{{login ? "Don't have an account. Signup" : "Already have an acccount. Login"}}</a>
+                <a (click) = "login = !login">{{login ? "Don't have an account. SIGNUP" : "Already have an acccount. LOGIN"}}</a>
 
-                <div class="button">
+                <div class="button mt-2">
                     <button [disabled] = "!name || !password" mat-raised-button (click) = "proceed()" color="primary">{{login ? 'Login' : 'Sign Up'}}</button>
                 </div>
 
