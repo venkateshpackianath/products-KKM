@@ -1,0 +1,80 @@
+<div class="row h-100">
+    <div [ngClass] = "addMode || editMode ? 'col-sm-8' : 'col-sm-12'" class = "p-4 d-flex align-items-center flex-column">
+        <table  mat-table [dataSource]="dataSource" class="mat-elevation-z8 m-4 w-75">
+
+            <!--- Note that these columns can be defined in any order.
+                  The actual rendered columns are set as a property on the row definition" -->
+          
+            <!-- Position Column -->
+            <ng-container matColumnDef="productCode">
+              <th mat-header-cell *matHeaderCellDef> Product Code </th>
+              <td mat-cell *matCellDef="let element">{{element.productCode}}</td>
+            </ng-container>
+          
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef> Name </th>
+              <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+            </ng-container>
+          
+            <!-- Weight Column -->
+            <ng-container matColumnDef="price">
+              <th mat-header-cell *matHeaderCellDef> Price </th>
+              <td mat-cell *matCellDef="let element"> {{element.price |  currency:'USD':'symbol'}} </td>
+            </ng-container>
+          
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="availability">
+              <th mat-header-cell *matHeaderCellDef> Availability </th>
+              <td mat-cell *matCellDef="let element"> {{element.availability === 'yes' ? 'In Stock' : 'Out of Stock'}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> Actions </th>
+                <td mat-cell *matCellDef="let element"> <a (click) = "edit(element)"><i class="fa fa-pencil mr-2" aria-hidden="true"></i></a> <a (click) = "delete(element)"><i class="fa fa-trash" aria-hidden="true"></i></a></td>
+              </ng-container>
+          
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+          <div>
+            <button (click) = "add()"  mat-raised-button color="primary">Add Product</button>
+          </div>
+
+    </div>
+    <div *ngIf = "addMode || editMode" class = "shadowed col-sm-4 p-5 d-flex flex-column justify-content-center h-100">
+        <form class = "d-flex flex-column " #productForm = "ngForm">
+            <h2>{{addMode ? 'Add Product' : 'Edit Product'}}</h2>
+            <div class="example-form-fields d-flex flex-column">
+                <mat-form-field appearance="fill">
+                    <mat-label>Product Code</mat-label>
+                    <input required [(ngModel)] = "productCode"  name = "productCode" matInput>
+                  </mat-form-field>
+        
+                  <mat-form-field appearance="fill">
+                    <mat-label>Product Name</mat-label>
+                    <input required [(ngModel)] = "name"  name = "name" matInput>
+                  </mat-form-field>
+
+                  <mat-form-field appearance="fill" floatLabel="always">
+                    <mat-label>Price</mat-label>
+                    <span matTextPrefix>$&nbsp;</span>
+                    <input matInput required [(ngModel)] = "price"  name = "price"  type="number" class="example-right-align" placeholder="0">
+                  </mat-form-field>
+        
+            </div>
+
+            <div>
+                <label>Availability </label>
+                <mat-radio-group required class = "d-flex flex-column" [(ngModel)] = "availability" name = "availability">
+                  <mat-radio-button value="yes">Yes</mat-radio-button>
+                  <mat-radio-button value="no">No</mat-radio-button>
+                </mat-radio-group>
+            </div>
+            <div class = "d-flex align-items-center flex-row justify-content-start mt-2">
+                <button class = "mr-2" (click) = "addProduct()"  mat-raised-button color="primary">{{addMode ? 'Add' : 'Edit' }}</button>
+                <button (click) = "cancel()"  mat-raised-button color="danger">cancel</button>
+            </div>
+          </form>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="wrapper row">
+    <div class="login-container p-5 col-sm-6">
+        <div class = "image-container d-flex flex-column justify-content-between">
+            <h1>KKM<span class = "clocked-text">Soft</span></h1>
+            <div class = "d-flex flex-row justify-content-end">
+                <img src="assets/images/plMainImg.3614c8f4.svg" alt="hero-image">
+            </div>
+            
+        </div>
+        
+    </div>
+    <div class="d-flex flex-column align-items-center justify-content-center p-5 login-form col-sm-6 h-100">
+        
+            <mat-card class = "w-75">
+            <mat-card-title>{{login ? 'Login' : 'Sign Up'}}</mat-card-title>
+            <mat-card-content>
+                <form class = "w-100" #loginForm = "ngForm">
+                <div>
+                    <mat-form-field appearance="outline">
+                    <input autocomplete="off" type="text" matInput placeholder="Username" [(ngModel)]="name" name = "name">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline">
+                    <input autocomplete="off" type="password" matInput placeholder="Password" [(ngModel)]="password" name = "password">
+                    </mat-form-field>
+                </div>
+
+                <p *ngIf="error" class="error">
+                    {{ error }}
+                </p>
+                <a class="mb-2" (click) = "login = !login">{{login ? "Don't have an account. Signup" : "Already have an acccount. Login"}}</a>
+
+                <div class="button">
+                    <button [disabled] = "!name || !password" mat-raised-button (click) = "proceed()" color="primary">{{login ? 'Login' : 'Sign Up'}}</button>
+                </div>
+
+                </form>
+            </mat-card-content>
+            </mat-card>
+    </div>
+</div>

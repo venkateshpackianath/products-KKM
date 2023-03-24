@@ -1,0 +1,4 @@
+<div *ngIf = "isLoggedIn" class="header-container d-flex align-items-center p-2 justify-content-between">
+    <h2>KKM<span class = "text-light">Soft</span></h2>
+    <h2 *ngIf = "userName"  class = "text-light">Hi {{userName}},</h2>
+</div>

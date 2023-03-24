@@ -1,0 +1,20 @@
+input.example-right-align::-webkit-outer-spin-button,
+input.example-right-align::-webkit-inner-spin-button {
+  display: none;
+}
+
+.example-right-align {
+    text-align: right;
+  }
+
+input.example-right-align {
+  -moz-appearance: textfield;
+}
+
+.mr-2{
+    margin-right: 20px;
+}
+
+.shadowed{
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
